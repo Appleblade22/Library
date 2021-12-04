@@ -12,42 +12,43 @@ public class FirstPage {
 
     public void menu() {
         Menu m = new Menu();
-        while (true) {
-            System.out.println("1. Search Book");
-            System.out.println("2. Add Book"); // Category,name,BID,author,category,price
-            System.out.println("3. Delete Book");
-            System.out.println("4. Return Book");
-            System.out.println("5. Display fine");
-            System.out.println("6. Exit");
-            System.out.printf("Enter your choice : ");
-            Scanner sc = new Scanner(System.in);
-            try {
-                int choice = sc.nextInt();
-                switch (choice) {
-                    case 1:
-                        m.searchBook();
-                        break;
-                    case 2:
-                        m.addBook();
-                        break;
-                    case 3:
-                        m.deleteBook();
-                        break;
-                    case 4:
-                        m.returnBook();
-                        break;
-                    case 5:
-                        m.displayFine();
-                        break;
-                    case 6:
-                        return;
-                    default:
-                        System.out.println("Please enter valid choice ");
+        try (Scanner sc = new Scanner(System.in)) {
+            while (true) {
+                System.out.println("1. Search Book");
+                System.out.println("2. Add Book"); // Category,name,BID,author,category,price
+                System.out.println("3. Delete Book");
+                System.out.println("4. Return Book");
+                System.out.println("5. Display fine");
+                System.out.println("6. Exit");
+                System.out.printf("Enter your choice : ");
+                try {
+                    int choice = sc.nextInt();
+                    switch (choice) {
+                        case 1:
+                            m.searchBook();
+                            break;
+                        case 2:
+                            m.addBook();
+                            break;
+                        case 3:
+                            m.deleteBook();
+                            break;
+                        case 4:
+                            m.returnBook();
+                            break;
+                        case 5:
+                            m.displayFine();
+                            break;
+                        case 6:
+                            return;
+                        default:
+                            System.out.println("Please enter valid choice ");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter valid choice ");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter valid choice ");
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -69,10 +70,11 @@ public class FirstPage {
             try {
                 Thread.sleep(2000);
             } catch (Exception e) {
+                e.printStackTrace();
             }
             ;
             if (user.equals(temp_user) && pass.equals(temp_pass)) {
-                System.out.println("\nLogin SuccessFul");
+                System.out.println("\nLogin SuccessFull");
                 menu();
                 return;
             }
